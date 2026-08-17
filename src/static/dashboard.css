@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0b0f14;
+  color: #e5e7eb;
+  font-family: Arial, sans-serif;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 240px;
+  background: #090d12;
+  border-right: 1px solid #1f2937;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  color: #38bdf8;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+nav a,
+.logout {
+  color: #9ca3af;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+nav a:hover,
+nav a.active {
+  background: #111827;
+  color: #fff;
+}
+
+.logout {
+  margin-top: auto;
+  color: #ef4444;
+}
+
+.main {
+  flex: 1;
+  padding: 32px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.topbar h1 {
+  margin: 0;
+}
+
+.topbar p {
+  color: #9ca3af;
+}
+
+.status {
+  background: #ff0008;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.card,
+.panel {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.card span {
+  color: #9ca3af;
+}
+
+.card h2 {
+  font-size: 34px;
+  margin: 12px 0 0;
+}
+
+.panel {
+  margin-bottom: 24px;
+}
+
+input,
+textarea {
+  width: 100%;
+  background: #0b0f14;
+  border: 1px solid #374151;
+  color: #fff;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  padding: 14px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 80px 1fr 180px;
+  padding: 14px 0;
+  border-bottom: 1px solid #1f2937;
+}
+
+.row.head {
+  color: #38bdf8;
+  font-weight: bold;
+}

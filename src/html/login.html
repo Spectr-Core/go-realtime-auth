@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXIOM PRODUCTS</title>
+</head>
+
+<body>
+    <div class="loading-screen">
+        <div class="loading-container">
+            <div class="loader-ring">
+                <div class="loader-core"></div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-text">0%</div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+            <div class="loading-text">Make Money</div>
+        </div>
+    </div>
+
+    <!--ring div starts here-->
+    <div id="login" style="display: none;" class="ring">
+        <i style="--clr:#6366f1;"></i>
+        <i style="--clr:#818cf8;"></i>
+        <i style="--clr:#4f46e5;"></i>
+        <div class="login">
+            <h2>Up Bro</h2>
+            <form action="/login" method="POST">
+                <div id="erremail" class="inputBx">
+                    <input id="username" type="text" name="username" placeholder="Username" value="">
+                </div>
+                <div style="margin-top: 15px;"></div>
+                <div class="inputBx">
+                    <input id="password" type="password" name="password" placeholder="Password" value="">
+                </div>
+                <div style="margin-top: 15px;"></div>
+                <div id="eror" style="display: none" class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-standardError MuiAlert-standard css-1q6rt30" role="alert"> <div class="MuiAlert-icon css-1l54tgj"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeSm css-jbkmnn" focusable="false" aria-hidden="true" viewBox="0 0 24 24" stroke="currentcolor" style="fill: none;"> <path d="M12 9V14" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11.9999 21.4098H5.93993C2.46993 21.4098 1.01993 18.9298 2.69993 15.8998L5.81993 10.2798L8.75993 4.99979C10.5399 1.78979 13.4599 1.78979 15.2399 4.99979L18.1799 10.2898L21.2999 15.9098C22.9799 18.9398 21.5199 21.4198 18.0599 21.4198H11.9999V21.4098Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11.9946 17H12.0036" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </svg></div> 
+                <div id="errtext" class="MuiAlert-message css-1xsto0d">Invalid username or password</div> <div class="MuiAlert-action css-1mzcepu"></div> </div>
+                <div class="inputBx">
+                    <input id="btnlogin" type="submit" value="Login">
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <script src="/static/login.js"></script>
+
+
+    <script>
+        const loadingScreen = document.querySelector('.loading-screen');
+        const content = document.querySelector('.content');
+        const progress = document.querySelector('.progress');
+        const progressText = document.querySelector('.progress-text');
+        const loadingContainer = document.querySelector('.loading-container');
+        const login = document.getElementById("login")
+
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const translateX = (Math.random() - 0.5) * 100;
+            particle.style.setProperty('--translateX', `${translateX}px`);
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animation = 'particleFloat 3s ease-in-out forwards';
+            loadingContainer.appendChild(particle);
+
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+        }
+
+        // Generate particles periodically
+        const particleInterval = setInterval(() => {
+            createParticle();
+        }, 300);
+
+        // Simulate loading progress
+        let currentProgress = 0;
+        const interval = setInterval(() => {
+            currentProgress += Math.random() * 12;
+            if (currentProgress > 100) currentProgress = 100;
+
+            progress.style.width = currentProgress + '%';
+            progressText.textContent = Math.round(currentProgress) + '%';
+
+            if (currentProgress === 100) {
+                clearInterval(interval);
+                clearInterval(particleInterval);
+                setTimeout(hideLoadingScreen, 500);
+            }
+        }, 300);
+
+        // Add mouse movement interaction
+        document.addEventListener('mousemove', (e) => {
+            if (loadingScreen.style.opacity !== '0') {
+                const ring = document.querySelector('.loader-ring');
+                const rect = ring.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const deltaX = (e.clientX - centerX) / 30;
+                const deltaY = (e.clientY - centerY) / 30;
+
+                ring.style.transform = `perspective(1000px) rotateX(${deltaY}deg) rotateY(${-deltaX}deg)`;
+            }
+        });
+        function hideLoadingScreen() {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                login.style.display = 'flex';
+
+            }, 800);
+        }
+
+        function refreshPage() {
+            window.location.reload();
+        }
+    </script>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #818cf8;
+            --accent-color: #4f46e5;
+            --background-start: #0f172a;
+            --background-end: #1e293b;
+            --text-color: #f3f4f6;
+        }
+/* ERROR */
+        .css-1q6rt30.MuiAlert-standardError {
+            background-color: transparent; 
+            color: rgb(255, 0, 0);
+        }
+
+        .css-1q6rt30 {
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: none;
+            background-image: none;
+            font-family: Inter, sans-serif;
+            display: flex;
+            padding: 6px 16px;
+            color: rgb(102, 96, 96);
+            background-color: rgb(255, 253, 253);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            line-height: 1.4286em;
+            font-weight: 500;
+            margin-top: 24px;
+        }
+
+        .css-1q6rt30 .MuiAlert-icon {
+            margin-right: 8px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            margin-bottom: auto;
+        }
+
+        .css-jbkmnn {
+            user-select: none;
+            width: 1em;
+            height: 1em;
+            display: inline-block;
+            fill: currentcolor;
+            flex-shrink: 0;
+            transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.25rem;
+        }
+
+        .css-1xsto0d {
+            padding: 8px 0px;
+            min-width: 0px;
+            overflow: auto;
+        }
+
+        .css-1q6rt30 .MuiAlert-action {
+            padding: 0px 0px 0px 16px;
+            margin-right: -6px;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2.5rem;
+            position: relative;
+        }
+
+        .loader-ring {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .loader-ring::before,
+        .loader-ring::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--primary-color);
+            animation: spin 2s linear infinite;
+        }
+
+        .loader-ring::after {
+            border: 3px solid transparent;
+            border-top-color: var(--secondary-color);
+            animation: spin 1.5s linear infinite reverse;
+        }
+
+        .loader-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .progress-container {
+            width: 240px;
+            position: relative;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.3s ease-out;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: -25px;
+            right: 0;
+            font-size: 0.875rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 2s linear infinite;
+        }
+
+        .content {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+            padding: 2rem;
+        }
+
+        .content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .refresh-btn {
+            margin-top: 2rem;
+            padding: 0.875rem 2rem;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .refresh-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.2),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .refresh-btn:hover::before {
+            left: 100%;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(var(--translateX));
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loader-ring {
+                width: 120px;
+                height: 120px;
+            }
+
+            .loader-core {
+                width: 60px;
+                height: 60px;
+            }
+
+            .progress-container {
+                width: 200px;
+            }
+
+            .loading-text {
+                font-size: 1rem;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Quicksand", sans-serif;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #818cf8;
+            --accent-color: #4f46e5;
+            --background-start: #0f172a;
+            --background-end: #1e293b;
+            --text-color: #f3f4f6;
+        }
+
+
+        body {
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .iframe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999999;
+            display: block;
+            /* Всегда открыт */
+        }
+
+        /* Контент на всю страницу */
+        .iframe-content {
+            width: 100%;
+            height: 100%;
+            background: white;
+            overflow: hidden;
+        }
+
+        /* Iframe на всю страницу */
+        #myIframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+
+
+
+
+
+
+
+
+
+        .ring {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ring i {
+            position: absolute;
+            inset: 0;
+            border: 2px solid #fff;
+            transition: 0.5s;
+        }
+
+        .ring i:nth-child(1) {
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            animation: animate 6s linear infinite;
+        }
+
+        .ring i:nth-child(2) {
+            border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+            animation: animate 4s linear infinite;
+        }
+
+        .ring i:nth-child(3) {
+            border-radius: 41% 44% 56% 59%/38% 62% 63% 37%;
+            animation: animate2 10s linear infinite;
+        }
+
+        .ring:hover i {
+            border: 6px solid var(--clr);
+            filter: drop-shadow(0 0 20px var(--clr));
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes animate2 {
+            0% {
+                transform: rotate(360deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .login {
+            position: absolute;
+            width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login h2 {
+            font-size: 2em;
+            color: #fff;
+        }
+
+        .login .inputBx {
+            position: relative;
+            width: 100%;
+        }
+
+        .login .inputBx input {
+            position: relative;
+            width: 100%;
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid #fff;
+            border-radius: 40px;
+            font-weight: 300;
+            font-size: 1.4em;
+            color: #fff;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .login .inputBx input[type="submit"] {
+            width: 100%;
+            background: #0078ff;
+            background: linear-gradient(135deg, var(--background-start), var(--background-end));
+            border: none;
+            cursor: pointer;
+        }
+
+        .login .inputBx input::placeholder {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .login .links {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .login .links a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</body>
+
+</html>
